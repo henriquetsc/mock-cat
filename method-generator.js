@@ -27,6 +27,6 @@ generatePOST = (path, returnStatus, data) => {
 
 getDefaultResponsePattern = (returnStatus, data) => {
     return (req, res) => {
-        res.send(returnStatus, data);
+        res.status(returnStatus).send(data);
     }
 }
