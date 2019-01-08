@@ -1,0 +1,25 @@
+{
+    "servicePath": "/firstmock",
+    "method": "GET",
+    "status": 200,
+    "data": [
+        {
+            "teste1": "teste1",
+            "teste2": "teste2",
+            "teste3": "teste3",
+            "teste4": ["teste4", "aaaa", "bbbb"],
+            "teste5": {
+                "item": "teste5"
+            }
+        },
+        {
+            "teste1": "teste1",
+            "teste2": "teste2",
+            "teste3": "teste3",
+            "teste4": ["teste4", "aaaa", "bbbb"],
+            "teste5": {
+                "item": "teste5"
+            }
+        }
+    ]
+}

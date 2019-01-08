@@ -1,0 +1,14 @@
+{
+  "name": "custom-mocks",
+  "version": "1.0.0",
+  "description": "An easy mock server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "henriquetsc",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
