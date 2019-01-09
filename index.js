@@ -2,8 +2,11 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const methodGenerator = require('./method-generator');
+const bodyParser = require('body-parser');
 
 const mockPath = './mocks'
+
+app.use(bodyParser.json());
 
 fs.watch(mockPath, (event, filename) => {
   if (event === 'change')
@@ -25,6 +28,14 @@ loadMockedService = (filePath) => {
   })
 }
 
-app.listen('3000', () => {
+app.post('/post', (req, res, next) => {
+  let filename = req.body.group;
+  console.log(`Creating new Server File: ${filename}`);
+  fs.writeFile(`${mockPath}/${filename}.json`, JSON.stringify(req.body.serviceData), (err) => err ? console.log(err) : console.log(`File ${filename} created!`));
+
+  res.send('hello');
+});
+
+app.listen('3100', () => {
     console.log('Listening on port 3000!');
 })
