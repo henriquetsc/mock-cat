@@ -8,9 +8,9 @@ const mockPath = './mocks'
 
 app.use(bodyParser.json());
 
-fs.watch(mockPath, (event, filename) => {
+fs.watch(mockPath, (event, groupName) => {
   if (event === 'change')
-    loadMockedService(`${__dirname}/mocks/${filename}`);
+    loadMockedService(`${__dirname}/mocks/${groupName}`);
 });
 
 fs.readdir(mockPath, (err, items) => loadMockFiles(items.map(item => `${__dirname}/mocks/${item}`)));
@@ -29,9 +29,10 @@ loadMockedService = (filePath) => {
 }
 
 app.post('/post', (req, res, next) => {
-  let filename = req.body.group;
-  console.log(`Creating new Server File: ${filename}`);
-  fs.writeFile(`${mockPath}/${filename}.json`, JSON.stringify(req.body.serviceData), (err) => err ? console.log(err) : console.log(`File ${filename} created!`));
+  let groupName = req.body.group;
+  let methodName = req.body.serviceData.servicePath
+  console.log(`Creating new Server File: ${groupName}`);
+  fs.writeFile(`${mockPath}/${groupName}${methodName}.json`, JSON.stringify(req.body.serviceData), (err) => err ? console.log(err) : console.log(`File ${groupName} created!`));
 
   res.send('hello');
 });
