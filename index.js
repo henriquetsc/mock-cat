@@ -3,6 +3,7 @@ const fs = require('fs');
 const app = express();
 const methodGenerator = require('./method-generator');
 const bodyParser = require('body-parser');
+const MockDataValidator = require('./middlewares/validators/mock-data-validator');
 
 const mockPath = './mocks'
 
@@ -28,7 +29,7 @@ loadMockedService = (filePath) => {
   })
 }
 
-app.post('/post', (req, res, next) => {
+app.post('/create', MockDataValidator, (req, res, next) => {
   let groupName = req.body.group;
   let methodName = req.body.serviceData.servicePath
   console.log(`Creating new Server File: ${groupName}`);
@@ -38,5 +39,5 @@ app.post('/post', (req, res, next) => {
 });
 
 app.listen('3100', () => {
-    console.log('Listening on port 3000!');
+    console.log('Listening on port 3100!');
 })
